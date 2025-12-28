@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lecture en script</title>
+
+  <style>
+    body{
+      margin:0;
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:#f5f6fa;
+      text-align:center;
+    }
+
+    header{
+      background:#0b2a5b;
+      color:white;
+      padding:18px;
+      font-size:22px;
+      font-weight:700;
+    }
+
+    .card{
+      background:white;
+      margin:24px;
+      padding:50px 20px;
+      font-size:90px;
+      font-weight:700;
+      border-radius:24px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .buttons{
+      margin-top:20px;
+    }
+
+    button{
+      font-size:18px;
+      padding:14px 22px;
+      margin:10px;
+      border:none;
+      border-radius:16px;
+      background:#0b2a5b;
+      color:white;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    button.secondary{
+      background:#e5e7eb;
+      color:#111;
+    }
+
+    footer{
+      margin-top:30px;
+      color:#555;
+      font-size:14px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>Lecture en écriture script</header>
+
+  <!-- AFFICHAGE EN SCRIPT (minuscules) -->
+  <div class="card" id="text">ta</div>
+
+  <div class="buttons">
+    <button onclick="playAudio()">🔊 Écouter</button>
+    <button class="secondary" onclick="next()">➡️ Suivant</button>
+  </div>
+
+  <footer>
+    On lit comme on écrit : <b>ta</b>, <b>pa</b>, <b>ti</b>…<br>
+    5 à 10 minutes suffisent.
+  </footer>
+
+  <script>
+    // Syllabes EN SCRIPT (minuscules)
+    const syllables = ["ta","to","ti","tu","pa","po","pi","pu"];
+
+    let current = "ta";
+
+    // Joue TA voix (ta.m4a, pa.m4a…)
+    function playAudio(){
+      const audio = new Audio(current + ".m4a");
+      audio.play();
+    }
+
+    function next(){
+      current = syllables[Math.floor(Math.random() * syllables.length)];
+      document.getElementById("text").textContent = current;
+    }
+  </script>
+
+</body>
+</html>
