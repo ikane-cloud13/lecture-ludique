@@ -46,7 +46,7 @@ small{color:#555}
 
 <div class="card" id="text">TA</div>
 
-<button onclick="speak()">🔊 Écouter</button>
+<button onclick="playAudio()">🔊 Écouter</button>
 <button onclick="next()">➡️ Suivant</button>
 
 <p><small>Lis doucement puis appuie sur écouter</small></p>
@@ -55,18 +55,14 @@ small{color:#555}
 const syllables = ["TA","TO","TI","TU","PA","PO","PI","PU"];
 let current = "TA";
 
-function speak(){
-  const u = new SpeechSynthesisUtterance(current.toLowerCase());
-  u.lang = "fr-FR";
-  u.rate = 0.85;
-  speechSynthesis.cancel();
-  speechSynthesis.speak(u);
+function playAudio(){
+  const audio = new Audio(current.toLowerCase() + ".m4a");
+  audio.play();
 }
 
 function next(){
   current = syllables[Math.floor(Math.random()*syllables.length)];
   document.getElementById("text").textContent = current;
-  speak();
 }
 </script>
 
