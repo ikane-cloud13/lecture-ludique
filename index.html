@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lecture Ludique</title>
+
+<style>
+body{
+  margin:0;
+  font-family:-apple-system, BlinkMacSystemFont, sans-serif;
+  background:#f5f6fa;
+  text-align:center;
+}
+header{
+  background:#0b2a5b;
+  color:white;
+  padding:16px;
+  font-size:20px;
+  font-weight:700;
+}
+.card{
+  background:white;
+  margin:20px;
+  padding:40px;
+  font-size:72px;
+  font-weight:900;
+  border-radius:20px;
+}
+button{
+  font-size:18px;
+  padding:14px 20px;
+  margin:10px;
+  border:none;
+  border-radius:14px;
+  background:#0b2a5b;
+  color:white;
+}
+small{color:#555}
+</style>
+</head>
+
+<body>
+
+<header>Lecture Ludique</header>
+
+<div class="card" id="text">TA</div>
+
+<button onclick="speak()">🔊 Écouter</button>
+<button onclick="next()">➡️ Suivant</button>
+
+<p><small>Lis doucement puis appuie sur écouter</small></p>
+
+<script>
+const syllables = ["TA","TO","TI","TU","PA","PO","PI","PU"];
+let current = "TA";
+
+function speak(){
+  const u = new SpeechSynthesisUtterance(current.toLowerCase());
+  u.lang = "fr-FR";
+  u.rate = 0.85;
+  speechSynthesis.cancel();
+  speechSynthesis.speak(u);
+}
+
+function next(){
+  current = syllables[Math.floor(Math.random()*syllables.length)];
+  document.getElementById("text").textContent = current;
+  speak();
+}
+</script>
+
+</body>
+</html>
