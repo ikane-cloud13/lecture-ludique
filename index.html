@@ -1,70 +1,101 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lecture Ludique</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lecture Ludique</title>
 
-<style>
-body{
-  margin:0;
-  font-family:-apple-system, BlinkMacSystemFont, sans-serif;
-  background:#f5f6fa;
-  text-align:center;
-}
-header{
-  background:#0b2a5b;
-  color:white;
-  padding:16px;
-  font-size:20px;
-  font-weight:700;
-}
-.card{
-  background:white;
-  margin:20px;
-  padding:40px;
-  font-size:72px;
-  font-weight:900;
-  border-radius:20px;
-}
-button{
-  font-size:18px;
-  padding:14px 20px;
-  margin:10px;
-  border:none;
-  border-radius:14px;
-  background:#0b2a5b;
-  color:white;
-}
-small{color:#555}
-</style>
+  <style>
+    body{
+      margin:0;
+      font-family:-apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:#f5f6fa;
+      text-align:center;
+    }
+
+    header{
+      background:#0b2a5b;
+      color:white;
+      padding:18px;
+      font-size:22px;
+      font-weight:700;
+    }
+
+    .card{
+      background:white;
+      margin:24px;
+      padding:50px 20px;
+      font-size:80px;
+      font-weight:900;
+      border-radius:24px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .buttons{
+      margin-top:20px;
+    }
+
+    button{
+      font-size:18px;
+      padding:14px 22px;
+      margin:10px;
+      border:none;
+      border-radius:16px;
+      background:#0b2a5b;
+      color:white;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    button.secondary{
+      background:#e5e7eb;
+      color:#111;
+    }
+
+    footer{
+      margin-top:30px;
+      color:#555;
+      font-size:14px;
+    }
+  </style>
 </head>
 
 <body>
 
-<header>Lecture Ludique</header>
+  <header>Lecture Ludique</header>
 
-<div class="card" id="text">TA</div>
+  <div class="card" id="text">TA</div>
 
-<button onclick="playAudio()">🔊 Écouter</button>
-<button onclick="next()">➡️ Suivant</button>
+  <div class="buttons">
+    <button onclick="playAudio()">🔊 Écouter</button>
+    <button class="secondary" onclick="next()">➡️ Suivant</button>
+  </div>
 
-<p><small>Lis doucement puis appuie sur écouter</small></p>
+  <footer>
+    Lis doucement puis appuie sur écouter.<br>
+    Sessions courtes : 5 à 10 minutes.
+  </footer>
 
-<script>
-const syllables = ["TA","TO","TI","TU","PA","PO","PI","PU"];
-let current = "TA";
+  <script>
+    // Liste des syllabes connues
+    const syllables = ["TA","TO","TI","TU","PA","PO","PI","PU"];
 
-function playAudio(){
-  const audio = new Audio(current.toLowerCase() + ".m4a");
-  audio.play();
-}
+    // Syllabe courante
+    let current = "TA";
 
-function next(){
-  current = syllables[Math.floor(Math.random()*syllables.length)];
-  document.getElementById("text").textContent = current;
-}
-</script>
+    // Joue TA voix enregistrée (ta.m4a, pa.m4a, etc.)
+    function playAudio(){
+      const file = current.toLowerCase() + ".m4a";
+      const audio = new Audio(file);
+      audio.play();
+    }
+
+    // Passe à une nouvelle syllabe
+    function next(){
+      current = syllables[Math.floor(Math.random() * syllables.length)];
+      document.getElementById("text").textContent = current;
+    }
+  </script>
 
 </body>
 </html>
